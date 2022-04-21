@@ -1,153 +1,171 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
+Skip to left side bar
 
 
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 
-# In[2]:
-
-
-from DataPreprocessing import * 
-
-
-# In[3]:
-
-
-from LogisticRegression import log_reg_y_pred  as lr
-from KNN import knn_pred as knn
-from NaiveBayes import nb_predictions as nb
-from SVM import svm_poly_pred as svm
-from DecisionTree import gini_d_tree_y_pred as dt
-from RandomForest import gini_rd_frst_y_pred as rdf
-
-
-# In[4]:
-
-
-from sklearn.metrics import *
-
-
-# In[5]:
-
-
-cm_log = confusion_matrix(y_test,lr)
-cm_knn = confusion_matrix(y_test,knn)
-cm_nb = confusion_matrix(y_test,nb)
-cm_svm = confusion_matrix(y_test,svm)
-cm_dt = confusion_matrix(y_test,dt)
-cm_rf = confusion_matrix(y_test,rdf)
-
-
-# In[6]:
-
-
-fig=plt.figure(figsize=(18,18))
-
-plt.subplot(3,2,1)
-sns.heatmap(cm_log,annot=True, fmt=".1f", cmap='summer')
-plt.title('Logistic Regression')
-
-plt.subplot(3,2,2)
-sns.heatmap(cm_knn,annot=True, fmt=".1f", cmap='summer')
-plt.title('K Nearest Neighbor ')
-
-plt.subplot(3,2,3)
-sns.heatmap(cm_nb,annot=True, fmt=".1f", cmap='summer')
-plt.title('Naive Bayes ')
-
-plt.subplot(3,2,4)
-sns.heatmap(cm_svm,annot=True, fmt=".1f", cmap='summer')
-plt.title('Support Vector Machine')
-
-plt.subplot(3,2,5)
-sns.heatmap(cm_dt,annot=True, fmt=".1f", cmap='summer' )
-plt.title('Decision Tree')
-
-plt.subplot(3,2,6)
-sns.heatmap(cm_rf,annot=True, fmt=".1f", cmap='summer')
-plt.title('Random Forest Tree')
-plt.show()
-
-
-# In[7]:
-
-
-ac_log = accuracy_score(y_test,lr)
-ac_knn = accuracy_score(y_test,knn)
-ac_nb = accuracy_score(y_test,nb)
-ac_svm = accuracy_score(y_test,svm)
+Filter files by name
+/Desktop/Citizens_Income_Prediction/
+Name
+Last Modified
+148
 ac_dt = accuracy_score(y_test,dt)
+149
 ac_rf = accuracy_score(y_test,rdf)
-
-
-# In[8]:
-
-
-algorithms = ['Logistic Regression' ,
-              'K-Nearest Neighbors',
-              'Naive Bayes',
-              'Support Vector Machine',
-             'Decision Tree',
-             'Random Forest Classifier']
-
-scores = [ac_log, ac_knn, ac_nb, ac_svm, ac_dt, ac_rf]
-
-
-# In[9]:
-
-
-max_y_lim = max(scores) + 0.05
-min_y_lim = min(scores) - 0.05
-
-
-# In[10]:
-
-
-fig=plt.figure(figsize=(12,8))
-plt.ylim(min_y_lim, max_y_lim)
-bars =plt.bar(algorithms, scores)
-plt.bar_label(bars)
-plt.xlabel("Algorithms")
-plt.ylabel('Accuracy score')
-plt.title('Categories Bar Plot')
-plt.show()
-
-
-# In[11]:
-
-
-cr_log = classification_report(y_test,lr)
-cr_knn = classification_report(y_test,knn)
-cr_nb = classification_report(y_test,nb)
-cr_svm = classification_report(y_test,svm)
-cr_dt = classification_report(y_test,dt)
-cr_rf = classification_report(y_test,rdf)
-
-
+150
+​
+151
+​
+152
 # In[12]:
+153
+​
+154
+​
+155
+scores = [ac_log, ac_knn, ac_nb, ac_svm, ac_dt, ac_rf]
+156
+​
+157
+​
+158
+# In[13]:
+159
+​
+160
+​
+161
+algorithms = ['Logistic Regression' ,
+162
+              'K-Nearest Neighbors',
+163
+              'Naive Bayes',
+164
+              'Support Vector Machine',
+165
+             'Decision Tree',
+166
+             'Random Forest Classifier']
+167
+​
+168
+​
+169
+# In[14]:
+170
+​
+171
+​
+172
+sc_max_y_lim = max(scores) + 0.05
+173
+sc_min_y_lim = min(scores) - 0.05
+174
+​
+175
+pr_max_y_lim = max(precisions) + 0.05
+176
+pr_min_y_lim = min(precisions) - 0.05
+177
+​
+178
+re_max_y_lim = max(recalls) + 0.05
+179
+re_min_y_lim = min(recalls) - 0.05
+180
+​
+181
+f1_max_y_lim = max(f1_scores) + 0.05
+182
+f1_min_y_lim = min(f1_scores) - 0.05
+183
+​
+184
+​
+185
+# In[15]:
+186
+​
+187
+​
+188
+fig=plt.figure(figsize=(10,25))
+189
+​
+190
+plt.subplot(4,1,1)
+191
+plt.xlim(sc_min_y_lim, sc_max_y_lim)
+192
+bars =plt.barh(algorithms, scores)
+193
+plt.bar_label(bars)
+194
+plt.xlabel("Algorithms")
+195
+plt.ylabel('Accuracy score')
+196
+plt.title('Accuracy Score Bar Plot')
+197
+​
+198
+plt.subplot(4,1,2)
+199
+plt.xlim(pr_min_y_lim, pr_max_y_lim)
+200
+bars =plt.barh(algorithms, precisions)
+201
+plt.bar_label(bars)
+202
+plt.xlabel("Algorithms")
+203
+plt.ylabel('Precision')
+204
+plt.title('Precision Bar Plot')
+205
+​
+206
+plt.subplot(4,1,3)
+207
+plt.xlim(re_min_y_lim, re_max_y_lim)
+208
+bars =plt.barh(algorithms, recalls)
+209
+plt.bar_label(bars)
+210
+plt.xlabel("Algorithms")
+211
+plt.ylabel('Recall')
+212
+plt.title('Recall Bar Plot')
+213
+​
+214
+plt.subplot(4,1,4)
+215
+plt.xlim(f1_min_y_lim, f1_max_y_lim)
+216
+bars =plt.barh(algorithms, f1_scores)
+217
+plt.bar_label(bars)
+218
+plt.xlabel("Algorithms")
+219
+plt.ylabel('F1 score')
+220
+plt.title('F1 Score Bar Plot')
+221
+​
+222
+plt.show()
+223
+​
+224
+​
 
-
-print("*"*20+'Logistic Regression'+"*"*20)
-print(cr_log)
-
-print("*"*20+'K Nearest Neighbor'+"*"*20)
-print(cr_knn)
-
-print("*"*20+'Naive Bayes'+"*"*20)
-print(cr_nb)
-
-print("*"*20+'Support Vector Machine'+"*"*20)
-print(cr_svm)
-
-print("*"*20+'Decision tree'+"*"*20)
-print(cr_dt)
-
-print("*"*20+'Random Forest'+"*"*20)
-print(cr_rf)
-
+Simple
+3
+30
+Python
+Model_Comparision.py
+Spaces: 4
+Ln 1, Col 1
