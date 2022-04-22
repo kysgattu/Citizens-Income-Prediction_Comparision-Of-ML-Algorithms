@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# ## importing libraries
+
 # In[1]:
 
 
@@ -13,18 +15,30 @@ import seaborn as sn
 from sklearn.svm import SVC
 
 
-# kernels = ['linear', 'poly', 'rbf', 'sigmoid']
+# In[2]:
 
-# print(' Kernel ' + ' Train Score ' + ' Test Score')
-# for k in kernels:
-#     temp_svm = SVC(kernel = k)
-#     temp_svm.fit(x_train,y_train)
-#     temp_y_pred = temp_svm.predict(x_test)
-#     train_score=temp_svm.score(x_train,y_train)
-#     test_score=temp_svm.score(x_test,y_test)
-#     print(k,train_score,test_score)
+
+#defining the kernels defined in scikit-learn
+kernels = ['linear', 'poly', 'rbf', 'sigmoid']
+
+
+# In[3]:
+
+
+# creating temporary models with all available kernels and analysing train and test scores
+#print(' Kernel ' + ' Train Score ' + ' Test Score')
+#for k in kernels:
+#    temp_svm = SVC(kernel = k)
+#    temp_svm.fit(x_train,y_train)
+#    temp_y_pred = temp_svm.predict(x_test)
+#    train_score=temp_svm.score(x_train,y_train)
+#    test_score=temp_svm.score(x_test,y_test)
+#    print(k,train_score,test_score)
+
 
 # > Polynomial Kernel has the best Scores, Hence we decide to use Polynomial Kernel for training the model
+
+# ### Training the model with polynomial kernel and test the model
 
 # In[4]:
 
@@ -50,16 +64,22 @@ svm_poly_pred = svm_poly_model.predict(x_test)
 from sklearn.metrics import confusion_matrix,classification_report,accuracy_score
 
 
-# In[10]:
+# In[8]:
 
 
 svm_ac = accuracy_score(svm_poly_pred,y_test)
 
 
-# In[11]:
+# In[9]:
 
 
 svm_ac
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:

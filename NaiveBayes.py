@@ -3,6 +3,8 @@
 
 # ## Defining Naive Bayes Algorithm
 
+# ##### import libraries
+
 # In[1]:
 
 
@@ -66,6 +68,8 @@ class NaiveBayesClassifier():
 
 from DataPreprocessing import *
 
+
+# #### train and test model based on above algorithm
 
 # In[4]:
 

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# ### Import required libaries
+
 # In[1]:
 
 
@@ -10,11 +12,21 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
+# ### Import the Train and Test Data from the DataPreprocessing
+# 
+#  - This calls the DataPreprocessing.py and takes data from it
+#  > Runtime roughly 2 seconds 
+
 # In[2]:
 
 
 from DataPreprocessing import * 
 
+
+# ### Import predicted values of each algorithm from their respective training files
+# - This calls LogisticRegression.py, KNN.py, NaiveBayes.py, SVM.py, DecisionTree.py, RandomForest.py and takes predicted classes from them
+# 
+# > Runtime roughly 10-20 seconds
 
 # In[3]:
 
@@ -27,11 +39,15 @@ from DecisionTree import gini_d_tree_y_pred as dt
 from RandomForest import gini_rd_frst_y_pred as rdf
 
 
+# ### Comparision of models using scikit-learn evaluation metrics
+
 # In[4]:
 
 
 from sklearn.metrics import *
 
+
+# ### Create Confusion Matrices for all six models
 
 # In[5]:
 
@@ -43,6 +59,8 @@ cm_svm = confusion_matrix(y_test,svm)
 cm_dt = confusion_matrix(y_test,dt)
 cm_rf = confusion_matrix(y_test,rdf)
 
+
+# ### Plot Heatmaps for Confusion Matrices
 
 # In[6]:
 
@@ -75,6 +93,8 @@ plt.title('Random Forest Tree')
 plt.show()
 
 
+# ### Create Classification Reports for all six models
+
 # In[7]:
 
 
@@ -85,6 +105,8 @@ cr_svm = classification_report(y_test,svm)
 cr_dt = classification_report(y_test,dt)
 cr_rf = classification_report(y_test,rdf)
 
+
+# ### Print Classification Reports
 
 # In[8]:
 
@@ -107,6 +129,8 @@ print(cr_dt)
 print("*"*20+'Random Forest'+"*"*20)
 print(cr_rf)
 
+
+# ### From the Classification Reports pull Precisions, Recalls, F1 Scores and Support Values
 
 # In[9]:
 
@@ -138,6 +162,8 @@ for i in reports:
     cr_break(i)
 
 
+# ### Calculate Accuracy Scores for models
+
 # In[11]:
 
 
@@ -166,6 +192,8 @@ algorithms = ['Logistic Regression' ,
              'Random Forest Classifier']
 
 
+# ### Define Ranges for the graphs to make graphs precise, short and in range
+
 # In[14]:
 
 
@@ -181,6 +209,8 @@ re_min_y_lim = min(recalls) - 0.05
 f1_max_y_lim = max(f1_scores) + 0.05
 f1_min_y_lim = min(f1_scores) - 0.05
 
+
+# ### Plot Accuracy Scores, Precision Scores and F1 Scores
 
 # In[15]:
 
@@ -220,4 +250,10 @@ plt.xlabel('F1 score')
 plt.title('F1 Score Bar Plot')
 
 plt.show()
+
+
+# In[ ]:
+
+
+
 

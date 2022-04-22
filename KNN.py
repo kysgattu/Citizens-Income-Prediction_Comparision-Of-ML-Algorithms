@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# **import libraries**
+
 # In[1]:
 
 
@@ -14,7 +16,7 @@ from collections import Counter
 
 from collections import Counter
 
-
+#euclidean distance to find distance between points
 def euclidean_distance(x1, x2):
     return np.sqrt(np.sum(((x1)-(x2))**2))
 
@@ -57,31 +59,33 @@ from sklearn.neighbors import KNeighborsClassifier as KNN
 from sklearn import metrics 
 
 
-# In[5]:
+# **training the model with number of neighbors = 20 and testing the model**
+
+# In[10]:
 
 
-model = KNN(n_neighbors = 3)
+model = KNN(n_neighbors = 20)
 
 
-# In[6]:
+# In[11]:
 
 
 model.fit(x_train,y_train)
 
 
-# In[7]:
+# In[12]:
 
 
 from sklearn.metrics import confusion_matrix,classification_report,accuracy_score
 
 
-# In[8]:
+# In[13]:
 
 
 knn_pred = model.predict(x_test)
 
 
-# In[11]:
+# In[14]:
 
 
 accuracy_score(knn_pred,y_test)

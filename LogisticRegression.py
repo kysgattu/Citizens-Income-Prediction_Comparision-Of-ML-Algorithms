@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# **Import Libraries**
+
 # In[1]:
 
 
@@ -20,14 +22,15 @@ warnings.filterwarnings('ignore')
 
 class LogisticRegression:
     
-    def sigmoid(self, z): return 1 / (1 + e**(-z))
+    def sigmoid(self, z): return 1 / (1 + e**(-z)) #define sigmoid function
     
+    #define costfunction based on log of sigmoid
     def cost_function(self, X, y, weights):                 
         z = dot(X, weights)
         predict_1 = y * log(self.sigmoid(z))
         predict_0 = (1 - y) * log(1 - self.sigmoid(z))
         return -sum(predict_1 + predict_0) / len(X)
-    
+    #fitting the model based on the running gradient descent when the accuracy reached to best
     def fit(self, X, y, iter=25, lr=0.05):        
         loss = []
         weights = rand(X.shape[1])
@@ -55,6 +58,8 @@ class LogisticRegression:
 
 from DataPreprocessing import * 
 
+
+# **training and testing the model based on above**
 
 # In[5]:
 
